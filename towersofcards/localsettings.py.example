@@ -1,0 +1,111 @@
+import os
+
+
+import mongoengine
+from mongoengine.django.sessions import SessionStore
+
+
+here = lambda x: os.path.join(os.path.dirname(os.path.abspath(__file__)), x)
+
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'localhost'] # For development
+
+EMAIL_HOST = 'domain.com'
+EMAIL_PORT = 25
+EMAIL_USE_TLS = False
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+SITE = {
+	'domain': 'localhost:8080',
+	'name': 'db.domain.com',
+}
+
+TORNADO_PORT = 8888
+
+MONGO_DB_ENDPOINT_URL = 'localhost'
+MONGO_DB_ENDPOINT_PORT = 27017
+
+MONGODB_DB_NAME = 'default'  # Do change this
+
+mongoengine.register_connection('default', MONGODB_DB_NAME, host=MONGO_DB_ENDPOINT_URL, port=MONGO_DB_ENDPOINT_PORT)
+mongoengine.connect('default', alias=MONGODB_DB_NAME)
+
+AUTHENTICATION_BACKENDS = (
+	'mongoengine.django.auth.MongoEngineBackend',
+)
+
+MONGOENGINE_USER_DOCUMENT = 'mongoengine.django.auth.User'
+AUTH_USER_MODEL = 'mongo_auth.MongoUser'
+
+LOGIN_URL = '/login/'
+
+LOGIN_REDIRECT_URL = '/' #Home
+
+SESSION_ENGINE = 'mongoengine.django.sessions'
+
+LOGGING = {
+	'version': 1,
+	'disable_existing_loggers': False,
+	'formatters': {
+		'standard': {
+			'format': '%(asctime)s [%(levelname)s] (%(module)s:%(lineno)d): %(message)s'
+		},
+	},
+	'filters': {
+		'require_debug_false': {
+			'()': 'django.utils.log.RequireDebugFalse'
+		}
+	},
+	'handlers': {
+		'console': {
+			'level': 'DEBUG',
+			'class': 'logging.StreamHandler',
+			'formatter': 'standard'
+		},
+		'default_file': {
+			'level': 'INFO',
+			'class': 'logging.handlers.RotatingFileHandler',
+			'filename': here('../logs/www.log'),
+			'maxBytes': 1024 * 1024 * 10, # 10 MB
+			'backupCount': 10,
+			'formatter': 'standard',
+		},
+		'mail_admins': {
+			'level': 'ERROR',
+			'filters': ['require_debug_false'],
+			'class': 'django.utils.log.AdminEmailHandler'
+		}
+	},
+	'loggers': {
+		'django.request': {
+			'handlers': ['mail_admins'],
+			'level': 'ERROR',
+			'propagate': True,
+		},
+		'api.views': {
+			'handlers': ['console', 'default_file'],
+			'level': 'DEBUG',
+			'propagate': True,
+		},
+		'web.views': {
+			'handlers': ['console', 'default_file'],
+			'level': 'DEBUG',
+			'propagate': True,
+		},
+	}
+}
+
+# mongoengine patch start #
+def patched_get_session(self, *args, **kwargs):
+	"""
+	patch mongoengine's session class to get it work with newer versions of django.
+	"""
+	sess = super(SessionStore, self)._get_session(*args, **kwargs)
+	if sess.get('_auth_user_id', None):
+		sess['_auth_user_id'] = str(sess.get('_auth_user_id'))
+	return sess
+
+SessionStore._get_session = patched_get_session
+# mongoengine patch end #

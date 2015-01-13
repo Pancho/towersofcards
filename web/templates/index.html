@@ -1,0 +1,20 @@
+{% load formtags %}{% load urlstags %}{% load htmldata %}<!DOCTYPE html>
+<html>
+	<head>
+		<title>Towers Of Cards</title>
+		<meta name="application-name" content="Towers of Cards ({{ static_version }})" />
+		<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,width=device-width" />
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
+		<link rel="icon" href="/media/img/favicon.ico" />
+	</head>
+	<body>
+		<div id="gt-screen"{% api_urls %}{% realtime_urls %} data-realtimeport="{{ realtime_port }}"></div>
+		{% csrf_token %}
+		<script type="text/javascript" src="/media/js/jquery.js?v={{ static_version }}"></script>
+		<script type="text/javascript" src="/media/js/jquery-ui.js?v={{ static_version }}"></script>
+		<script type="text/javascript" src="/media/js/towersofcards.js?v={{ static_version }}"></script>
+		<script type="text/javascript" src="/media/js/realtime.js?v={{ static_version }}"></script>
+		<script type="text/javascript" src="/media/js/common.js?v={{ static_version }}"></script>
+		<script type="text/javascript" src="/media/js/utils.js?v={{ static_version }}"></script>
+	</body>
+</html>

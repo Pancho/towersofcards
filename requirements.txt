@@ -1,0 +1,14 @@
+# *****************************************************************************************
+# ** Install this with "pip install -r requirements.txt" once you have virtualenv set up **
+# *****************************************************************************************
+# Apparent suspect for awesome web apps
+django==1.7.1
+# gunicorn is needed for the wsgi
+#gunicorn
+# Python MongoDB connector
+pymongo
+# Avoid sql completely and use mongodb for auth too
+mongoengine
+git+https://github.com/django-nonrel/mongodb-engine
+# Tornado, for web sockets
+tornado
