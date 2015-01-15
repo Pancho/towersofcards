@@ -22,7 +22,7 @@ Leave two empty lines after each card so a new list is constructed for the next 
 
 * Neutron Bomb
 * von Neumann Probes
-* global(organic:-100hp,radiation)
+* global(organic:-100hp,emp:1t)
 * Deal 100HP worth of damage to all organic and temporarily incapacitate all mechanical units on the battlefield
 * Something that Samuel Cohen said about a neutron bomb
 * /media/img/cms/cards/neutron-bomb.png
