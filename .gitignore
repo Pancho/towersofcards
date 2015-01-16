@@ -54,3 +54,6 @@ localsettings.py
 #################
 .sh
 
+# Emacs
+########
+*~
