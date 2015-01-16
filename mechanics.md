@@ -2,17 +2,34 @@
 
 ## Game structure
 
-Game is split into rounds. During a round player plays cards and they
-come into effect in the beginning of next turn. During the turn a wave
-a attackers is spawned on each lane. Round ends when these reach goal
-or are destroyed. Probably some minimum time is also needed so that
-the player has time to play his cards.
+Game structure:
+* Phase
+** Tick (or turn)
 
-The game split into phases (EARLY, MID, LATE, END) which defines which
+Game is split into rounds. During a round a player plays cards and they
+come into effect in the beginning of next turn. During a turn a wave
+of attackers is spawned on each lane. Round ends when these reach goal
+or are destroyed. Probably some minimum time is also needed so that
+the player has time to play their cards.
+
+
+The game is split into phases (EARLY, MID, LATE, END) which defines which
 cards are playable. In the EARLY phase only EARLY cards are playable,
 and in the END phase all are playable.
 
+
 Each phase lasts 3-5 rounds? Except the END phase which lasts until the bitter end.
+Phase count for each could be different:
+First phase could have 5 ticks so that the players can choose the direction and to expose their responses.
+Second should last less, so that the players can test each other, but should also have an opportunity to still hide 
+some approaches.
+
+
+Late and end should be the same.
+First phase is to set up the battlefield and expose the direction in which a player will steer their game.
+Second to test the opponent's strategy and explore the possibilities
+End should be there to exploit the weaknesses and finish the game. It should not restrict the player to do what they 
+would do in the first two, but doing that can change the outcome, for better or worse.
 
 ## Entities
 
@@ -22,28 +39,33 @@ Towers are placed in slots that are given to each player. Each lane starts with 
 
 Basic attributes:
 
-* Range
+* Range (discrete, in fact a whole state machine can (and should) be compiled for each combination of tower and slot)
 * Rate of fire
-* Damage type
+* Damage type (only one by default, (de)buffs can change that)
   * Physical/Kinetic
-  * Fire (Also causes maybe dot?)
+  * Fire (Also causes maybe dot?). Fire should cause dot.
+  * Acid (The old ones splash)
   * Cold (Slows targets?)
-  * Electric? 
+  * Electric? sure: a different kind of aoe.
+  * Laser (strong, slow rate of fire, armor piercing)
 * Projectile type
   * Direct - pewpew!
   * Splash - shoots projectile that damages all units in an area
   * omnidirectional - Wave eminates from the tower outwards and damages all in radius
 
 There are several possibilities for targeting.
-* Nearest to the tower
-* Nearest to the base
-* Strongest attacker
+* Nearest to the tower (this should be a slider of values - preference: closest, farthest, none)
+* Nearest to the base (does this make sense? What about the towers which are too far? And most will be :))
+* Strongest attacker (this should be a slider of three values - preference: strongest, weakest, none)
+
+Not sure whether two types of preferences (no matter what options the player has) would work. This could complicate 
+things design-wise, balancing. It sounds awesome, but it could be a problem.
 
 Towers target the first attacker that enters its range. It keeps on
 firing on it until it's out of range or is destroyed. It selects the
 new target with the targeting heuristic.
 
-Targeting heuristic could also be a attribute of the tower?
+Targeting heuristic could also be a attribute of the tower? This is overengineering :) But is an interesting idea though. 
 
 Examples:
 
@@ -67,27 +89,32 @@ breaker mechanism to ensure game ending.
 Attributes:
 * Speed (Scales with time)
 * Hit points (Scales with time)
-* Shields?
+* Shields? Maybe just for the von Neumann Probes
 * Damage (which is inflicted upon the enemy when reaching base.
 * Resistances to different data types
 * Number of attackers per wave
 
 
-### Projecties
+### Projectiles
 
-Do we also model these or are they just cosmetic? At simplest they should be autohit.
+Do we also model these or are they just cosmetic? At simplest they should be auto hit.
+Auto hit, yes. But for the sake of graphics they should be modelled and is not a concern of backend at all. 
+Backend just has to report who hits what and the new state of the units in a proper sequence. 
 
 ## Cards
 
-Factions?
+Factions? See cards.md
 
 ### Towers
 
-These cards are placed on an empty (or already occupied slots?) and they spawn a new tower.
+These cards are placed on an empty (or already occupied slots?) and they spawn a new tower. It becomes operational in 
+the next tick
+
+Some tower cards should be able to spawn more than one tower. Weaker, but still. Not more than the number of lanes, though.
 
 ### Attackers
 
-These can used to change the attacker type for a lane. Maybe they should have a duration? (n waves).
+These can be used to change the attacker type for a lane. Maybe they should have a duration? (n waves).
 
 Examples:
 
@@ -111,11 +138,13 @@ Enemy tower switches sides for a round.
 
 ### Upgrade tower/attacker
 
-Upgrades tower or attacker permanently. They are lost if the attacker/tower is changed.
+Upgrades tower or attacker permanently. They are lost if the attacker/tower is changed. 
 
 This gives gameplay options, where the player can invest heavily in
 early game attackers hoping to gain an early win, or save them later
 on the stronger late game attackers and towers.
+
+Should we allow selling or replacing? Will the games be long enough for that? Players should be able to make mistakes. Have to test.
 
 Maybe there needs to be cap how many upgrades tower can have?
 

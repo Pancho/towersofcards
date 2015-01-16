@@ -8,7 +8,7 @@ It's easier for parsing then :)
 * Type (tower, buff/debuff, target, global, add types here)
 * Effect and procedure (in a simple language that's parsed and processed) - a string.
 * Text
-* Flavor text
+* Flavor text (or not)
 * Path to image (full) or image slug (where the rest will be appended automatically)
 
 
