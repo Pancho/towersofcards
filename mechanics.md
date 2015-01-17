@@ -1,15 +1,5 @@
 # Mechanics
 
-## Open questions:
-* How many phases 3 (EARLY, MID, LATE) or 4 (+ END)
-* Should phases have rounds or just turns
-	* Rounds can make games longer
-	* Having just turns, creeps spawning at each tick, could speed things up
-* How many turns per phase
-* Faction specifics
-* Creeps per each faction
-* How many creeps spawn at each base at each phase for each faction
-
 ## Game structure
 
 Game structure:
@@ -189,7 +179,7 @@ After countless ages of slumber they rise from the depths of the unknown to reta
 
 ### Humans
 
-The people we all and love, relentless race. Not even the sky is the limit.
+The people we all see and love, relentless race. Not even the sky is the limit.
 
 * organic
 * aggressive
