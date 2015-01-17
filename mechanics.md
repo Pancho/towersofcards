@@ -21,14 +21,14 @@ and in the END phase all are playable.
 Each phase lasts 3-5 rounds? Except the END phase which lasts until the bitter end.
 Phase count for each could be different:
 First phase could have 5 ticks so that the players can choose the direction and to expose their responses.
-Second should last less, so that the players can test each other, but should also have an opportunity to still hide 
+Second should last less, so that the players can test each other, but should also have an opportunity to still hide
 some approaches.
 
 
 Late and end should be the same.
 First phase is to set up the battlefield and expose the direction in which a player will steer their game.
 Second to test the opponent's strategy and explore the possibilities
-End should be there to exploit the weaknesses and finish the game. It should not restrict the player to do what they 
+End should be there to exploit the weaknesses and finish the game. It should not restrict the player to do what they
 would do in the first two, but doing that can change the outcome, for better or worse.
 
 ## Entities
@@ -56,16 +56,17 @@ Basic attributes:
 There are several possibilities for targeting.
 * Nearest to the tower (this should be a slider of values - preference: closest, farthest, none)
 * Nearest to the base (does this make sense? What about the towers which are too far? And most will be :))
+  * No I mean that given option of targeting multiple targets, it always chooses the one closest to the end in range.
 * Strongest attacker (this should be a slider of three values - preference: strongest, weakest, none)
 
-Not sure whether two types of preferences (no matter what options the player has) would work. This could complicate 
+Not sure whether two types of preferences (no matter what options the player has) would work. This could complicate
 things design-wise, balancing. It sounds awesome, but it could be a problem.
 
 Towers target the first attacker that enters its range. It keeps on
 firing on it until it's out of range or is destroyed. It selects the
 new target with the targeting heuristic.
 
-Targeting heuristic could also be a attribute of the tower? This is overengineering :) But is an interesting idea though. 
+Targeting heuristic could also be a attribute of the tower? This is overengineering :) But is an interesting idea though.
 
 Examples:
 
@@ -74,7 +75,7 @@ Sniper tower: Low ROF, High Damage, direct. Targets the strongest in range.
 Freeze tower: Low ROF, Low damage, Omni. Targets everyone in range.
 
 Basic tower: low Damage, direct, targets nearest to base
-  
+
 ### Attackers
 
 When a round starts a wave of attackers is spawned at at the spawning
@@ -88,6 +89,8 @@ breaker mechanism to ensure game ending.
 
 Attributes:
 * Speed (Scales with time)
+* Type (Mechanical, Organic)
+* Size?
 * Hit points (Scales with time)
 * Shields? Maybe just for the von Neumann Probes
 * Damage (which is inflicted upon the enemy when reaching base.
@@ -98,16 +101,16 @@ Attributes:
 ### Projectiles
 
 Do we also model these or are they just cosmetic? At simplest they should be auto hit.
-Auto hit, yes. But for the sake of graphics they should be modelled and is not a concern of backend at all. 
-Backend just has to report who hits what and the new state of the units in a proper sequence. 
+Auto hit, yes. But for the sake of graphics they should be modelled and is not a concern of backend at all.
+Backend just has to report who hits what and the new state of the units in a proper sequence.
 
 ## Cards
 
-Factions? See cards.md
+So cards are of three factions and neutral ones. Human, Probes, the old ones. See cards.md
 
 ### Towers
 
-These cards are placed on an empty (or already occupied slots?) and they spawn a new tower. It becomes operational in 
+These cards are placed on an empty (or already occupied slots?) and they spawn a new tower. It becomes operational in
 the next tick
 
 Some tower cards should be able to spawn more than one tower. Weaker, but still. Not more than the number of lanes, though.
@@ -138,7 +141,7 @@ Enemy tower switches sides for a round.
 
 ### Upgrade tower/attacker
 
-Upgrades tower or attacker permanently. They are lost if the attacker/tower is changed. 
+Upgrades tower or attacker permanently. They are lost if the attacker/tower is changed.
 
 This gives gameplay options, where the player can invest heavily in
 early game attackers hoping to gain an early win, or save them later
