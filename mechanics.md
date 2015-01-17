@@ -1,10 +1,21 @@
 # Mechanics
 
+## Open questions:
+* How many phases 3 (EARLY, MID, LATE) or 4 (+ END)
+* Should phases have rounds or just turns
+	* Rounds can make games longer
+	* Having just turns, creeps spawning at each tick, could speed things up
+* How many turns per phase
+* Faction specifics
+* Creeps per each faction
+* How many creeps spawn at each base at each phase for each faction
+
 ## Game structure
 
 Game structure:
 * Phase
-** Tick (or turn)
+** Round?
+*** Tick (or turn)
 
 Game is split into rounds. During a round a player plays cards and they
 come into effect in the beginning of next turn. During a turn a wave
@@ -157,3 +168,42 @@ Kamikaze: +X speed -Y resistances
 ### Special
 
 Routing changes in map, etc.
+
+
+## Factions
+
+### The Old Ones
+
+After countless ages of slumber they rise from the depths of the unknown to retake their place as the cosmic rulers.
+
+* organic
+* terrifying
+* fearsome defenses
+* special powers are based on fear, misdirection and attrition of enemies
+* can wait longer to punish the enemy than the other factions
+* ancient, destroyers of numerous civilisation
+* indifferent to everyone
+
+### Humans
+
+The people we all and love, relentless race. Not even the sky is the limit.
+
+* organic
+* aggressive
+* rapid defenses
+* special powers are a display of military superiority and technological advancements
+* aren't afraid to loose own troops if it achieves higher cause, like victory
+* progressing ever faster, now united against common foes
+* battle high makes them forget about the dead
+
+### von Neumann Probes
+
+Self replicating machines sent into space by an unknown civilisation, learning and sending information back.
+
+* mechanical, AI
+* slow creeps
+* defenses have great power
+* due to expectation of limited resources, probes don't needlessly sacrifice their troops
+* never stumbled on foes as resistant as on Earth
+* prepared for the worse, even space faring
+* rarely sacrifice own units and towers (debuffs)

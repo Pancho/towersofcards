@@ -2,9 +2,9 @@ var Realtime = (function () {
 	var r = {},
 		u = {
 			initialize: function () {
-				var screen = $('#gt-screen'),
-					urls = screen.data('realtimeurls'),
-					port = screen.data('realtimeport'),
+				var screen = $('#game'),
+					urls = screen.data('realtimeurls') || [],
+					port = screen.data('realtimeport') || 8888,
 					host = window.location.host.split(':')[0];
 
 				$.each(urls, function (name, url) {
