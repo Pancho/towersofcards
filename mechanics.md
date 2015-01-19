@@ -93,7 +93,7 @@ Attributes:
 * Type (Mechanical, Organic)
 * Size?
 * Hit points (Scales with time)
-* Shields? Maybe just for the von Neumann Probes
+* Shields? Maybe just for the Berserkers
 * Damage (which is inflicted upon the enemy when reaching base.
 * Resistances to different data types
 * Number of attackers per wave
@@ -167,7 +167,7 @@ Routing changes in map, etc.
 
 ### The Old Ones
 
-After countless ages of slumber they rise from the depths of the unknown to retake their place as the cosmic rulers.
+After countless ages of deep slumber they rise from the depths of the unknown to retake their place as the cosmic rulers.
 
 * organic
 * terrifying
@@ -179,7 +179,7 @@ After countless ages of slumber they rise from the depths of the unknown to reta
 
 ### Humans
 
-The people we all see and love, relentless race. Not even the sky is the limit.
+The people we all know and love, relentless race. Not even the sky is the limit.
 
 * organic
 * aggressive
@@ -189,14 +189,14 @@ The people we all see and love, relentless race. Not even the sky is the limit.
 * progressing ever faster, now united against common foes
 * battle high makes them forget about the dead
 
-### von Neumann Probes
+### Berserkers
 
-Self replicating machines sent into space by an unknown civilisation, learning and sending information back.
+von Neumann Probes sent into space by an unknown civilization, learning and sending information back. But something went terribly wrong.
 
 * mechanical, AI
 * slow creeps
 * defenses have great power
-* due to expectation of limited resources, probes don't needlessly sacrifice their troops
+* due to expectation of limited resources, probes don't needlessly sacrifice their units
 * never stumbled on foes as resistant as on Earth
 * prepared for the worse, even space faring
 * rarely sacrifice own units and towers (debuffs)

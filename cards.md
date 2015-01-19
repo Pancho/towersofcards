@@ -26,10 +26,10 @@ This will be handy: http://www.yog-sothoth.com/wiki/index.php/R%27lyehian and ht
 * Nog, y-n'ghft
 * darkness
 
-## von Neumann Probes
+## Berserkers
 
 * Neutron Bomb
-* von Neumann Probes
+* Berserkers
 * global(organic:-100hp,emp:1t)
 * Deal 100HP worth of damage to all organic and temporarily incapacitate all mechanical units on the battlefield
 * For the next Hour, you'll be the most miserable creature imaginable
