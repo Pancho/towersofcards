@@ -1,1 +1,32 @@
+body {font-family:'VT323', 'Courier New', monospace;background-color:#1e2a36;}
+a {color:#fff;}
+
 canvas {padding:0;margin:0;display:block;}
+
+#game {position:absolute;top:0;left:200px;padding:25px 0 0 50px;}
+
+#heading {position:fixed;width:180px;top:20px;left:20px;}
+#heading h1 {}
+#heading h1 a {font-size:25px;display:block;text-decoration:none;}
+
+/* Navigation */
+#navigation {position:fixed;width:180px;top:60px;left:20px;}
+#navigation li {margin:0 0 1px 0;}
+#navigation li a {display:block;padding:5px;font-size:18px;text-decoration:none;}
+#navigation li a:hover {text-shadow:0 0 5px #4190e3;}
+#navigation li.selected a {background-color:rgba(78,104,125,1);}
+
+#news {margin:0 0 20px 0;color:#fff;}
+#news li {display:inline-block;width:200px;vertical-align:top;margin:0 30px 20px 0;}
+#news li h2 {font-size:18px;line-height:25px;}
+#news li p {color:#fff;font-size:15px;line-height:20px;}
+#news li p a {}
+#news li .button {}
+
+.options-block {display:inline-block;width:300px;padding:15px;background-color:rgba(0,0,0,.2);border:1px solid #fff;}
+.options-block p {color:#fff;font-size:15px;line-height:20px;}
+.options-block p a {}
+.options-block .button {}
+
+/* META */
+.button {}

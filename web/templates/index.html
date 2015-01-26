@@ -4,20 +4,25 @@
 		<title>Towers Of Cards</title>
 		<meta name="application-name" content="Towers of Cards ({{ static_version }})" />
 		<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,width=device-width" />
-		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
+		<link href='http://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="/media/css/reset.css?v={{ static_version }}" />
 		<link rel="stylesheet" type="text/css" href="/media/css/towerofcards.css?v={{ static_version }}" />
 		<link rel="icon" href="/media/img/favicon.ico" />
 	</head>
 	<body>
-		<div id="game"{% api_urls %}{% realtime_urls %} data-realtimeport="{{ realtime_port }}"></div>
+		<div id="heading">
+			<h1><a href="{% url 'web.index' %}">Towers of Cards</a></h1>
+		</div>
+		<div id="game"{% api_urls %}{% realtime_urls %}></div>
 		{% csrf_token %}
 		<script type="text/javascript" src="/media/js/jquery.js?v={{ static_version }}"></script>
 		<script type="text/javascript" src="/media/js/jquery-ui.js?v={{ static_version }}"></script>
 		<script type="text/javascript" src="/media/js/engine.js?v={{ static_version }}"></script>
-		<script type="text/javascript" src="/media/js/towersofcards.js?v={{ static_version }}"></script>
-		<script type="text/javascript" src="/media/js/realtime.js?v={{ static_version }}"></script>
 		<script type="text/javascript" src="/media/js/common.js?v={{ static_version }}"></script>
 		<script type="text/javascript" src="/media/js/utils.js?v={{ static_version }}"></script>
+		<script type="text/javascript" src="/media/js/api.js?v={{ static_version }}"></script>
+		<script type="text/javascript" src="/media/js/realtime.js?v={{ static_version }}"></script>
+		<script type="text/javascript" src="/media/js/menu.js?v={{ static_version }}"></script>
+		<script type="text/javascript" src="/media/js/towersofcards.js?v={{ static_version }}"></script>
 	</body>
 </html>

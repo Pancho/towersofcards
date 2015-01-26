@@ -1,7 +1,9 @@
 import json
 import logging
+from functools import wraps
 
 
+from django.utils.decorators import available_attrs
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotAllowed
 
 
@@ -30,8 +32,6 @@ def cors(function):
 		response[ACCESS_CONTROL_EXPOSE_HEADERS] = ''
 
 		return response
-
-
 	return wrapper
 
 
@@ -49,7 +49,8 @@ def rest(function, result_format='json'):
 	def wrapper(request, *args, **kwargs):
 		try:
 			result = function(request, *args, **kwargs)
-			result['status'] = 'ok'
+			if 'status' not in result:
+				result['status'] = 'ok'
 			if result_format == 'json':
 				return HttpResponse(json.dumps(result, cls=encoders.VersatileJSONEncoder), content_type='application/json')
 			else:

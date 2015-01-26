@@ -1,4 +1,0 @@
-TERRAIN = []
-
-
-INDICES = ['slug']

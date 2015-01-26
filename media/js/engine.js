@@ -2,6 +2,7 @@ var Engine = (function () {
 	var r = {
 		stopped: false,
 		canvas: null,
+		animationFrame: 0,
 		frameQueue: [
 			{
 				'x': 0,
@@ -9,7 +10,7 @@ var Engine = (function () {
 				'img': (function () {
 					var img = new Image();
 
-					img.src = '/media/img/cms/terrain/grass.png';
+					img.src = '/media/img/cms/maps/test-map.png';
 
 					return img;
 				}())
@@ -17,8 +18,10 @@ var Engine = (function () {
 		],
 		initialized: false,
 		resizeCanvas: function () {
-			r.canvas.width = window.innerWidth;
-			r.canvas.height = window.innerHeight;
+			var game = $('#game');
+
+			r.canvas.width = game.width();
+			r.canvas.height = game.height();
 		},
 		initResize: function () {
 			r.resizeCanvas();
@@ -28,9 +31,7 @@ var Engine = (function () {
 		Draw single object
 		 */
 		draw: function (obj) {
-			var context = r.canvas.getContext('2d');
-
-			context.drawImage(obj.img, obj.x, obj.y);
+			r.context.drawImage(obj.img, obj.x, obj.y);
 		}
 	}, u = {
 		/*
@@ -38,7 +39,7 @@ var Engine = (function () {
 		 With this one can achieve the z-index, which would otherwise be elusive
 
 		 Use concat in case you have predefined list of objects (map, towers states, defenses states, lists
-		 that don't need new calculations and that don't change through a game)
+		 that don't need new calculations and that don't change through a game: map, placed towers, deck of cards...)
 		 */
 		queue: function (obj, concat) {
 			if (concat) {
@@ -47,15 +48,13 @@ var Engine = (function () {
 				r.frameQueue.push(obj);
 			}
 		},
-		animate: function () {
-			var context = r.canvas.getContext('2d');
-
+		animate: function (timestamp) {
 			if (r.stopped) {
 				return;
 			}
 
 			// Clear everything
-			context.clearRect(0, 0, r.canvas.width, r.canvas.height);
+			r.context.clearRect(0, 0, r.canvas.width, r.canvas.height);
 			// Draw the elements on queue
 			$.each(r.frameQueue, function (i, obj) {
 				r.draw(obj);
@@ -63,23 +62,47 @@ var Engine = (function () {
 			// Clear queue for the next frame
 //			r.frameQueue = [];
 			// Once doe with this frame, request next
-			console.log('Frame, ', window.requestAnimationFrame(u.animate));
-//			window.requestAnimationFrame(u.animate);
+			r.animationFrame = window.requestAnimationFrame(u.animate);
+			console.log('Frame: ', r.animationFrame);
 		},
 		show: function () {
+			console.log('Running show.');
+
 			$('#game-canvas').show();
 			r.stopped = false;
+			u.animate();
 		},
 		hide: function () {
+			console.log('Running hide.');
+
 			$('#game-canvas').hide();
 			r.stopped = true;
+			if (r.animationFrame) {
+				window.cancelAnimationFrame(r.animationFrame);
+			}
+		},
+		destroy: function () {
+			console.log('Running destroy.');
+
+			if (!r.initialized) {
+				console.log('Not yet initialized. Aborting.');
+				return;
+			}
+			if (r.animationFrame) {
+				window.cancelAnimationFrame(r.animationFrame);
+			}
+
+			r.stopped = true;
+			r.initialized = false;
+			$('#game-canvas').remove();
 		},
 		initialize: function (config) {
-			var win = $(window);
+			console.log('Initializing engine.');
 
 			// Initialize once
 			if (r.initialized) {
-				return 'Already initialized';
+				console.log('Already initialized. Aborting.');
+				return;
 			}
 
 			config = config || {};
@@ -87,16 +110,22 @@ var Engine = (function () {
 			$('#' + (config.canvasContainerId || 'game')).append('<canvas id="game-canvas"></canvas>');
 
 			r.canvas = document.getElementById('game-canvas');
+			r.context = r.canvas.getContext('2d');
+
+			if (config.initHidden) {
+				u.hide(); // When only initialized, you don't want it to show. That has to be requested manually.
+			}
 
 			// Init resizing
 			r.initResize();
 
 			// Initialized
 			r.initialized = true;
+			r.stopped = false;
 
 			return this;
 		}
 	};
 
-	return u.initialize();
+	return u;
 }());

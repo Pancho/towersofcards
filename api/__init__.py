@@ -1,11 +1,14 @@
-from api.db import terrain
+from api.db import maps
+from api.db import news
 
 
 ASSETS = {
-	'terrain': terrain.TERRAIN,
+	'maps': maps.MAPS,
+	'news': news.NEWS,
 }
 
 
 INDICES = {
-	'terrain': terrain.INDICES,
+	'maps': maps.INDICES,
+	'news': news.INDICES,
 }

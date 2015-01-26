@@ -3,6 +3,7 @@ var TowersOfCards = (function () {
 			staticFilesVersion: 1421091478
 		}, u = {
 		initialize: function () {
+			Menu.initialize();
 		}
 	};
 
