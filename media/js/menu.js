@@ -7,6 +7,7 @@ var Menu = (function () {
 			});
 			Engine.destroy();
 			Options.destroy();
+			Home.destroy();
 		},
 		items: {
 			home: {
@@ -16,28 +17,7 @@ var Menu = (function () {
 					console.log('Home selected');
 					r.cleanGame();
 					ev.preventDefault();
-
-					API.getHome({}, function (data) {
-						var game = $('#game'),
-							news = $('<ul id="news"></ul>'),
-							newsItem = [];
-
-						console.log(data);
-
-						if (data.news && data.news.length) {
-							$.each(data.news, function (i, newsPiece) {
-								newsItem = $('<li>');
-								newsItem.html(newsPiece.html);
-								news.append(newsItem);
-							});
-
-							game.append(news);
-						}
-
-						if (data.nicknameMissing) {
-							game.append('<div class="options-block"><p>You don\'t have nickname set. Visit <a class="options" href="">Options</a> to remedy that.</p></div>');
-						}
-					});
+					Home.initialize();
 				}
 			},
 			tutorial: {
