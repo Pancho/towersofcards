@@ -38,7 +38,7 @@ class LobbyChatHandler(tornado.websocket.WebSocketHandler):
 		LobbyChatHandler.lobby_sockets.add(self)
 
 	def check_origin(self, origin):
-		return True # shortcuts.require_correct_origin(origin)
+		return True  # shortcuts.require_correct_origin(origin)
 
 	def on_message(self, message):
 		logger.info(message)

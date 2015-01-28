@@ -1,8 +1,12 @@
 var Menu = (function () {
 	var r = {
 		cleanGame: function () {
-			$('#game').empty();
+			$('#game').empty().css({
+				width: 'auto',
+				height: 'auto'
+			});
 			Engine.destroy();
+			Options.destroy();
 		},
 		items: {
 			home: {
@@ -61,6 +65,7 @@ var Menu = (function () {
 					console.log('Options selected');
 					r.cleanGame();
 					ev.preventDefault();
+					Options.initialize();
 				}
 			},
 			engineTest: {
