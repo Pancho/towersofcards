@@ -1,5 +1,4 @@
 import logging
-import logging.config
 
 
 import tornado.websocket
@@ -38,13 +37,18 @@ class LobbyChatHandler(tornado.websocket.WebSocketHandler):
 		LobbyChatHandler.lobby_sockets.add(self)
 
 	def check_origin(self, origin):
-		return True  # shortcuts.require_correct_origin(origin)
+		return shortcuts.require_correct_origin(origin)
 
 	def on_message(self, message):
-		logger.info(message)
+		line = {
+			'who': self.player.get('username'),  # should be nickname
+			'what': message,
+		}
+
+		logger.info('LobbyChat: {}'.format(line))
 
 		for handler in LobbyChatHandler.lobby_sockets:
-			handler.write_message(self.player.get('username') + ": " + message)
+			handler.write_message(line)
 
 	def on_close(self):
 		logger.info('LobbyChatHandler closed')

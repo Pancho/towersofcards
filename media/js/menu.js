@@ -16,8 +16,11 @@ var Menu = (function () {
 				setup: function(ev) {
 					console.log('Home selected');
 					r.cleanGame();
-					ev.preventDefault();
+					if (ev) {
+						ev.preventDefault();
+					}
 					Home.initialize();
+					window.location.hash = 'home';
 				}
 			},
 			tutorial: {
@@ -26,7 +29,10 @@ var Menu = (function () {
 				setup: function(ev) {
 					console.log('Tutorial selected');
 					r.cleanGame();
-					ev.preventDefault();
+					if (ev) {
+						ev.preventDefault();
+					}
+					window.location.hash = 'tutorial';
 				}
 			},
 			lobby: {
@@ -35,7 +41,10 @@ var Menu = (function () {
 				setup: function(ev) {
 					console.log('Lobby selected');
 					r.cleanGame();
-					ev.preventDefault();
+					if (ev) {
+						ev.preventDefault();
+					}
+					window.location.hash = 'lobby';
 				}
 			},
 			options: {
@@ -44,8 +53,11 @@ var Menu = (function () {
 				setup: function(ev) {
 					console.log('Options selected');
 					r.cleanGame();
-					ev.preventDefault();
+					if (ev) {
+						ev.preventDefault();
+					}
 					Options.initialize();
+					window.location.hash = 'options';
 				}
 			},
 			engineTest: {
@@ -58,9 +70,13 @@ var Menu = (function () {
 					r.cleanGame();
 					game.height(1000); // This will be actual map height; height will not scale if width is unchanged.
 					game.width($(window).width() - navigation.outerWidth(true) - parseInt(navigation.css('left'), 10) - parseInt(game.css('paddingLeft'), 10));
-					ev.preventDefault();
+					if (ev) {
+						ev.preventDefault();
+					}
 					Engine.initialize();
 					Engine.animate();
+
+					window.location.hash = 'engineTest';
 				}
 			}
 		},
@@ -68,7 +84,12 @@ var Menu = (function () {
 			var list = $('<ul id="navigation"></ul>'),
 				game = $('#game'),
 				item = [],
-				anchor = [];
+				anchor = [],
+				hash = window.location.hash;
+
+			hash = hash || '#home';
+			hash = hash.replace('#', '');
+
 			$.each(r.items, function (id, blob) {
 				item = $('<li></li>');
 				anchor = $('<a href="#" title="' + blob.title + '">' + blob.text + '</a>');
@@ -82,7 +103,11 @@ var Menu = (function () {
 
 			game.before(list);
 
-			r.items.home.setup({preventDefault: function () {}});
+			if (r.items[hash]) {
+				r.items[hash].setup();
+			} else {
+				r.items.home.setup();
+			}
 		},
 		hijackHeading: function () {
 			$('#heading').on('click', r.items.home.setup);
