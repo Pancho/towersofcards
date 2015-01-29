@@ -82,10 +82,10 @@ var Engine = (function () {
 			}
 		},
 		destroy: function () {
-			console.log('Running destroy.');
+			console.log('Running destroy on Engine.');
 
 			if (!r.initialized) {
-				console.log('Not yet initialized. Aborting.');
+				console.log('Engine not yet initialized. Aborting.');
 				return;
 			}
 			if (r.animationFrame) {
@@ -97,11 +97,11 @@ var Engine = (function () {
 			$('#game-canvas').remove();
 		},
 		initialize: function (config) {
-			console.log('Initializing engine.');
+			console.log('Initializing Engine.');
 
 			// Initialize once
 			if (r.initialized) {
-				console.log('Already initialized. Aborting.');
+				console.log('Engine already initialized. Aborting.');
 				return;
 			}
 

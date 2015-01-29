@@ -7,6 +7,7 @@ var Menu = (function () {
 			});
 			Engine.destroy();
 			Options.destroy();
+			Lobby.destroy();
 			Home.destroy();
 		},
 		items: {
@@ -44,6 +45,7 @@ var Menu = (function () {
 					if (ev) {
 						ev.preventDefault();
 					}
+					Lobby.initialize();
 					window.location.hash = 'lobby';
 				}
 			},

@@ -25,8 +25,6 @@ var API = (function () {
 						});
 					};
 				});
-
-				console.log(this);
 				return this;
 			}
 		};
