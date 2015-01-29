@@ -31,17 +31,17 @@ canvas {padding:0;margin:0;display:block;}
 
 
 /* Lobby */
-.lobby {}
+#lobby {}
+#toc-lobby-control {width:400px;}
 
-#join {}
-
-#create {}
-
-#unranked {}
-
-#room {}
-
-.chat {}
+#lobby-chat {border:1px solid rgba(255,255,0,.3);color:#fff;}
+#lobby-chat dl {font-size:15px;}
+#lobby-chat dl dd {display:inline-block;width:95px;padding:2px;vertical-align:top;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;-o-text-overflow:ellipsis;}
+#lobby-chat dl dd:after {content:': '}
+#lobby-chat dl dt {display:inline-block;width:295px;padding:2px;vertical-align:top;}
+#lobby-chat form {}
+#lobby-chat form fieldset {}
+#lobby-chat form fieldset input {font-size:14px;padding:2px;width:395px;background-color:rgba(255,255,255,.4);color:#fff;border:none;}
 
 /* META */
 .button {}

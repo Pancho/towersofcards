@@ -14,13 +14,14 @@ var Lobby = (function () {
 
 				if ($.trim(text) !== '') {
 					Realtime.send('lobbychat', text);
+					$('#toc-chat-text').val('');
 				}
 			});
 
 			Realtime.attach('lobbychat:message', function (msg) {
 				try {
 					msg = JSON.parse(msg.data);
-					chatLog.append('<dd>' + msg.who + '</dd><dt>' + msg.what + '</dt>');
+					chatLog.append('<dd title="' + msg.who + '">' + msg.who + '</dd><dt>' + msg.what + '</dt>');
 				} catch (e) {
 					console.log(e);
 				}
