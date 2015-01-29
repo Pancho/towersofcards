@@ -6,19 +6,19 @@ var Options = (function () {
 					'<fieldset>' +
 						'<legend>Change your nick name</legend>' +
 						'<ol>' +
-							'<li><label>Nick name:</label><input type="text" name="nick" id="toc-nick"></input></li>' +
+							'<li><label for="toc-nick">Nick name:</label><input type="text" name="toc-nick" id="toc-nick"></input></li>' +
 						'</ol>' +
-					'<div class="toc-control">' +
-						'<input type="submit"/>' +
-					'</div>' +
-				'</fieldset>' +
-			'</form>');
+						'<div class="toc-control">' +
+							'<input type="submit"/>' +
+						'</div>' +
+					'</fieldset>' +
+				'</form>');
 
 			game.append(form);
 
 			form.on('submit', function (ev) {
 				ev.preventDefault();
-				alert('boom! ' + $('input#toc-nick').val());
+				alert('boom! ' + $('#toc-nick').val());
 			});
 		}
 	}, u = {
