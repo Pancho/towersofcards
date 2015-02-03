@@ -41,7 +41,7 @@ class LobbyChatHandler(tornado.websocket.WebSocketHandler):
 
 	def on_message(self, message):
 		line = {
-			'who': self.player.get('username'),  # should be nickname
+			'who': self.player.get('nickname', self.player.get('username')), 
 			'what': message,
 		}
 
