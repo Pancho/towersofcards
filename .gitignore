@@ -57,3 +57,7 @@ localsettings.py
 # Emacs
 ########
 *~
+
+# Emacs
+########
+towers/*

@@ -31,3 +31,17 @@ def home(request):
 		nickname_missing = True
 
 	return {'news': news, 'nicknameMissing': nickname_missing}
+
+@login_required
+@require_http_methods(['GET', 'POST'])
+@decorators.ajax_required
+@decorators.rest
+def nick(request):
+	player = players.get_player(request.user)
+
+	if request.method == 'GET':
+		return {'nickname' : player.get('nickname')}
+	elif request.method == 'POST':
+		player['nickname'] = request.POST.get("nickname")
+		mongo.upsert_blob(mongo.db.players, player, "username")
+		return {}

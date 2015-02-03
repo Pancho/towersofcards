@@ -6,7 +6,8 @@ var Options = (function () {
 					'<fieldset>' +
 						'<legend>Change your nick name</legend>' +
 						'<ol>' +
-							'<li><label for="toc-nick">Nick name:</label><input type="text" name="toc-nick" id="toc-nick"></input></li>' +
+							'<li><label for="toc-nick">Nick name:</label>' +
+							'<input type="text" name="toc-nick" id="toc-nick" required="required"></input></li>' +
 						'</ol>' +
 						'<div class="toc-control">' +
 							'<input type="submit"/>' +
@@ -16,9 +17,15 @@ var Options = (function () {
 
 			game.append(form);
 
+			API.getNick({}, function (data) {
+				form.find('#toc-nick').val(data.nickname);
+			});
+
 			form.on('submit', function (ev) {
 				ev.preventDefault();
-				alert('boom! ' + $('#toc-nick').val());
+				API.postNick({"nickname": $('#toc-nick').val()}, function (data) {
+
+				});
 			});
 		}
 	}, u = {
